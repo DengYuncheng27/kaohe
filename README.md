@@ -1,7 +1,8 @@
 
-#目标： 获取教务上的课表
-    ##分析： 
-        ###从拿到课表信息的地址开始。
+# 目标： 获取教务上的课表
+## 你好
+    ## 分析： 
+        ### 从拿到课表信息的地址开始。
             1. QueryStudentScheduleData : 返回json文件包含所有的课程信息。 
                 * url=https://jwgls2.cust.edu.cn/api/ClientStudent/Home/StudentHomeApi/QueryStudentScheduleData
                 * 需要的cookie 两个  domain: jwgls2.cust.edu.cn	
@@ -20,7 +21,7 @@
                 第三点中的url是多个302重定向最终得到的，追踪重定向一直到开头，发现就是从potal那边跳转到教务这边的网址。 
                 即：https://portal.cust.edu.cn/custp/x/to?siteId=d11c3e894ffa410ca9d4786287298714
                 
-        ###登录potal ：https://portal.cust.edu.cn/custp/index
+        ### 登录potal ：https://portal.cust.edu.cn/custp/index
              1. 获取到execution
                 这个在登录的界面直接搜就行，用bs4可以直接得到这个的值。
              
@@ -29,7 +30,7 @@
                 带上execution和账号密码post提交即可模拟登录成功。
                 登录后拿到需要的cookie就可以去访问教务了。 
     
-    ##问题：
+    ## 问题：
         1. 在统一接口中拿到登录教务需要的cookie后，在访问教务的时候重定向的第四个链接访问状态码是200，预期是302继续重定向的。 
             url：https://mysso.cust.edu.cn/cas/login?service=http://wwwn.cust.edu.cn/wengine-auth/login?cas_login=true
             描述： 访问它的cookie都有，在浏览器中访问得到的是302,但是在这个请求中的得到的确是200。 
